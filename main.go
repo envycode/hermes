@@ -1,7 +1,7 @@
 package main
 
-import "fmt"
+import "hermes/cli"
 
 func main() {
-	fmt.Println("initial commit")
+	cli.Execute()
 }
