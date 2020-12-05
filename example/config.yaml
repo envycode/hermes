@@ -1,6 +1,6 @@
 ---
-- hostname: "206.189.85.128"
-  user: "rizki"
-  password: ""
-  port: "22"
-  key: ""
+hostname: "206.189.85.128"
+user: "rizki"
+password: ""
+port: "22"
+key: ""
