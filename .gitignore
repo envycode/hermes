@@ -1,0 +1,12 @@
+.idea
+.vscode
+vendor
+*.test
+*.out
+*.so
+*.dll
+*.dylib
+.DS_Store
+build
+.env
+proto
