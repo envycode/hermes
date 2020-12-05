@@ -19,9 +19,7 @@ func (g Git) Clone() error {
 	}
 	configDir := fmt.Sprintf("%v/.hermes", home)
 
-	if err := syscall.Rmdir(configDir); err != nil {
-		return err
-	}
+	_ = syscall.Rmdir(configDir)
 
 	cmd := exec.Command("bash", "-c", fmt.Sprintf("git clone %v %v", g.Uri, configDir))
 	cmd.Stderr = os.Stderr
