@@ -1,3 +1,5 @@
+<img src="cover.png" alt="hermes_logo.png" height="200"/>
+
 # Hermes
 
 Save and sync your ssh config in private repository
