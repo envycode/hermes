@@ -1,6 +1,8 @@
 ---
 - hostname: "206.189.85.128"
  user: "rizki"
- password: ""
+ password: "MTIzCg==" #123 (b64 encoded)
  port: "22"
- key: ""
+ key: |
+   MTIzNDU2Nzg5MTAK
+# 123456 (b64 encoded)

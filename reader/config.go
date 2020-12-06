@@ -1,6 +1,7 @@
 package reader
 
 import (
+	"encoding/base64"
 	"errors"
 	"fmt"
 	"gopkg.in/yaml.v2"
@@ -47,8 +48,22 @@ func ReadYaml() (SshConfigs, error) {
 			return SshConfigs{}, err
 		}
 		for i := 0; i < len(config); i++ {
-            configs[config[i].Hostname] = config[i]
-        }
+			if config[i].Password != "" {
+				password, err := base64.StdEncoding.DecodeString(config[i].Password)
+				if err != nil {
+					log.Fatalln("decode password error: ", err)
+				}
+				config[i].Password = string(password)
+			}
+			if config[i].Key != "" {
+				key, err := base64.StdEncoding.DecodeString(config[i].Key)
+				if err != nil {
+					log.Fatalln("decode key error: ", err)
+				}
+				config[i].Password = string(key)
+			}
+			configs[config[i].Hostname] = config[i]
+		}
 	}
 	if len(configs) == 0 {
 		return SshConfigs{}, errors.New("no configuration yaml found")
