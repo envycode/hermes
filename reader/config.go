@@ -21,6 +21,7 @@ type SshConfig struct {
 	Password string `yaml:"password"`
 	Port     string `yaml:"port"`
 	Key      string `yaml:"key"`
+	Alias    string `yaml:"alias"`
 }
 
 func ReadYaml() (SshConfigs, error) {
@@ -63,6 +64,15 @@ func ReadYaml() (SshConfigs, error) {
 				config[i].Key = string(key)
 			}
 			configs[config[i].Hostname] = config[i]
+
+			if config[i].Alias != "" {
+				_, found := configs[config[i].Alias]
+				if found {
+					log.Fatalln("duplicated alias found, ", config[i].Alias)
+				}
+				configs[config[i].Alias] = config[i]
+			}
+
 		}
 	}
 	if len(configs) == 0 {
