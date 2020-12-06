@@ -37,3 +37,12 @@ func (b Bootstrap) CheckEmptyDir(name string) error {
 	}
 	return nil
 }
+
+func (b Bootstrap) Destroy() error {
+	home, err := os.UserHomeDir()
+	if err != nil {
+		log.Fatalln(err)
+	}
+	configDir := fmt.Sprintf("%v/.hermes", home)
+	return os.RemoveAll(configDir)
+}
