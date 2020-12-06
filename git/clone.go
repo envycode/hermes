@@ -38,13 +38,13 @@ func (g Git) Update() error {
 
 	_ = syscall.Rmdir(configDir)
 
-	cmd := exec.Command("bash", "-c", fmt.Sprintf("git reset --hard HEAD"))
+	cmd := exec.Command("bash", "-c", "git reset --hard HEAD")
 	cmd.Dir = configDir
 	cmd.Stderr = os.Stderr
 	cmd.Stdin = os.Stdin
 	cmd.Stdout = os.Stdout
 
-	cmdPull := exec.Command("bash", "-c", fmt.Sprintf("git pull"))
+	cmdPull := exec.Command("bash", "-c", "git pull")
 	cmdPull.Dir = configDir
 	cmdPull.Stderr = os.Stderr
 	cmdPull.Stdin = os.Stdin
