@@ -1,3 +1,6 @@
+![latest tag](https://img.shields.io/github/v/tag/rzkmak/hermes)
+![go_version](https://img.shields.io/github/go-mod/go-version/rzkmak/hermes)
+
 <img src="cover.png" alt="hermes_logo.png" height="200"/>
 
 # Hermes
