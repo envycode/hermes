@@ -61,6 +61,23 @@ var initCmd = &cobra.Command{
 	},
 }
 
+var updateCmd = &cobra.Command{
+	Use:   "update",
+	Short: "Update hermes client library",
+	Run: func(cmd *cobra.Command, args []string) {
+		bootstrapper := bootstrap.Bootstrap{}
+		clone := git.Git{}
+		if err := clone.Update(); err != nil {
+			log.Fatalln(fmt.Sprintf("failed to update repository with details %v", err))
+		}
+		homeDir := bootstrapper.CheckOrInitDirectory()
+		if err := bootstrapper.CheckEmptyDir(homeDir); err != nil {
+			log.Fatalln(fmt.Sprintf("config file is not found, with error %v ", err))
+		}
+		log.Println("update hermes config success")
+	},
+}
+
 var destroyCmd = &cobra.Command{
 	Use:   "destroy",
 	Short: "Remove hermes client inventory",
@@ -74,7 +91,7 @@ var destroyCmd = &cobra.Command{
 }
 
 func Execute() {
-	rootCmd.AddCommand(initCmd, execCmd, destroyCmd)
+	rootCmd.AddCommand(initCmd, execCmd, destroyCmd, updateCmd)
 	if err := rootCmd.Execute(); err != nil {
 		log.Fatalln(err)
 	}
