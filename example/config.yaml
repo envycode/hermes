@@ -3,8 +3,21 @@
   user: "rizki"
   password: "MTIzCg==" #123 (b64 encoded)
   port: "22"
-  alias: "server-name"
+  alias: "server_rizki"
   default_user: true
+  
+- hostname: "206.189.85.128"
+  user: "erickow"
+  port: "22"
+  alias: "server_erickow"
   key: |
     MTIzNDU2Nzg5MTAK
 # 123456 (b64 encoded)
+
+- hostname: "10.34.1.10"
+  user: "pf"
+  password: "MTIzCg==" #123 (b64 encoded)
+  port: "22"
+  alias: "server_pf"
+  default_user: true
+  
