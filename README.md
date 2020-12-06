@@ -7,6 +7,8 @@
 
 Save and sync your ssh config in private repository
 
+![](demo.gif)
+
 *Disclaimer*
 ```
 - Use with your own risk
