@@ -8,6 +8,12 @@ Save and sync your ssh config in private repository
 - Never use public repository to save your config
 ```
 
+## Prerequisite
+
+```
+- install sshpass - https://linux.die.net/man/1/sshpass
+```
+
 ## Installation
 
 ```
