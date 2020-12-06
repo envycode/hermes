@@ -2,12 +2,16 @@ package cli
 
 import (
 	"fmt"
-	"github.com/spf13/cobra"
 	"hermes/bootstrap"
 	"hermes/executor"
 	"hermes/git"
 	"hermes/reader"
 	"log"
+	"os"
+	"strconv"
+
+	"github.com/olekukonko/tablewriter"
+	"github.com/spf13/cobra"
 )
 
 var rootCmd = &cobra.Command{
@@ -78,6 +82,30 @@ var updateCmd = &cobra.Command{
 	},
 }
 
+var listCmd = &cobra.Command{
+	Use:   "list",
+	Short: "List config hermes",
+	Run: func(cmd *cobra.Command, args []string) {
+		configs, err := reader.ReadYaml()
+		if err != nil {
+			log.Fatalln(err)
+		}
+		table := tablewriter.NewWriter(os.Stdout)
+		table.SetHeader([]string{"ALIAS", "HOSTNAME", "USER", "IS DEFAULT"})
+		set := make(map[string]bool)
+		for _, c := range configs.Config {
+			keySet := fmt.Sprintf("%v:%v:%v:%v", c.Alias, c.Hostname, c.User, strconv.FormatBool(c.DefaultUser))
+			if _, found := set[keySet]; found {
+				continue
+			}
+			set[keySet] = true
+			table.Append([]string{c.Alias, c.Hostname, c.User, strconv.FormatBool(c.DefaultUser)})
+		}
+
+		table.Render()
+	},
+}
+
 var destroyCmd = &cobra.Command{
 	Use:   "destroy",
 	Short: "Remove hermes client inventory",
@@ -91,7 +119,7 @@ var destroyCmd = &cobra.Command{
 }
 
 func Execute() {
-	rootCmd.AddCommand(initCmd, execCmd, destroyCmd, updateCmd)
+	rootCmd.AddCommand(initCmd, execCmd, updateCmd, listCmd, destroyCmd)
 	if err := rootCmd.Execute(); err != nil {
 		log.Fatalln(err)
 	}
