@@ -35,9 +35,9 @@ var execCmd = &cobra.Command{
 			log.Fatalln(err)
 		}
 		exec := executor.Executor{Configs: configs}
-		if err := exec.Execute(args[0]); err != nil{
-		    log.Fatalln(err)
-        }
+		if err := exec.Execute(args[0]); err != nil {
+			log.Fatalln(err)
+		}
 	},
 }
 
