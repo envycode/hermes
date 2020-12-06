@@ -4,11 +4,12 @@ import (
 	"encoding/base64"
 	"errors"
 	"fmt"
-	"gopkg.in/yaml.v2"
 	"io/ioutil"
 	"log"
 	"os"
 	"strings"
+
+	"gopkg.in/yaml.v2"
 )
 
 type SshConfigs struct {
@@ -16,12 +17,13 @@ type SshConfigs struct {
 }
 
 type SshConfig struct {
-	Hostname string `yaml:"hostname"`
-	User     string `yaml:"user"`
-	Password string `yaml:"password"`
-	Port     string `yaml:"port"`
-	Key      string `yaml:"key"`
-	Alias    string `yaml:"alias"`
+	Hostname    string `yaml:"hostname"`
+	User        string `yaml:"user"`
+	Password    string `yaml:"password"`
+	Port        string `yaml:"port"`
+	Key         string `yaml:"key"`
+	DefaultUser bool   `yaml:"default_user"`
+	Alias       string `yaml:"alias"`
 }
 
 func ReadYaml() (SshConfigs, error) {
@@ -73,6 +75,15 @@ func ReadYaml() (SshConfigs, error) {
 				configs[config[i].Alias] = config[i]
 			}
 
+			configs[fmt.Sprintf("%v@%v", config[i].User, config[i].Hostname)] = config[i]
+
+			if config[i].DefaultUser {
+				_, found := configs[config[i].Hostname]
+				if found {
+					log.Fatalln("duplicated hostname found for", config[i].Hostname)
+				}
+				configs[config[i].Hostname] = config[i]
+			}
 		}
 	}
 	if len(configs) == 0 {

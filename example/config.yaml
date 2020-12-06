@@ -4,6 +4,7 @@
   password: "MTIzCg==" #123 (b64 encoded)
   port: "22"
   alias: "server-name"
+  default_user: true
   key: |
     MTIzNDU2Nzg5MTAK
 # 123456 (b64 encoded)
