@@ -10,3 +10,4 @@ vendor
 build
 .env
 proto
+hermes
