@@ -41,12 +41,14 @@ func ReadYaml() (SshConfigs, error) {
 		if err != nil {
 			return SshConfigs{}, err
 		}
-		var config SshConfig
+		var config []SshConfig
 		err = yaml.Unmarshal(yamlFile, &config)
 		if err != nil {
 			return SshConfigs{}, err
 		}
-		configs[config.Hostname] = config
+		for i := 0; i < len(config); i++ {
+            configs[config[i].Hostname] = config[i]
+        }
 	}
 	if len(configs) == 0 {
 		return SshConfigs{}, errors.New("no configuration yaml found")
