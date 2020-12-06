@@ -31,7 +31,9 @@ curl -L https://github.com/rzkmak/hermes/releases/download/0.0.2/hermes -o herme
 
 - Create your private repository to save the config, add config there with format example in `example/config.yaml`
 - Run `hermes init ${your_private_url_repository}`
-- Run `hermes connect ${hostname}`
+- Run `hermes connect ${hostname}` to connect specific hostname, require default user per hostname (see example)
+- Run `hermes connect user@hostname` to connect specific hostname with specific user
+- Run `hermes connect ${alias}` to connect with alias (see example)
 - Run `hermes list` to view all available config
 
 ## How to Update Local Config
