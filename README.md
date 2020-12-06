@@ -26,6 +26,11 @@ curl -L https://github.com/rzkmak/hermes/releases/download/0.0.2/hermes -o herme
 - Run `hermes init ${your_private_url_repository}`
 - Run `hermes connect ${hostname}`
 
+## How to Update Local Config
+
+- Run `hermes update`
+
+
 ## How to Remove Local Config
 
 - Run `hermes destroy`
