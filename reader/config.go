@@ -65,7 +65,6 @@ func ReadYaml() (SshConfigs, error) {
 				}
 				config[i].Key = string(key)
 			}
-			configs[config[i].Hostname] = config[i]
 
 			if config[i].Alias != "" {
 				_, found := configs[config[i].Alias]
