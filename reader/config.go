@@ -60,7 +60,7 @@ func ReadYaml() (SshConfigs, error) {
 				if err != nil {
 					log.Fatalln("decode key error: ", err)
 				}
-				config[i].Password = string(key)
+				config[i].Key = string(key)
 			}
 			configs[config[i].Hostname] = config[i]
 		}
