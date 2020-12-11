@@ -18,7 +18,8 @@ var rootCmd = &cobra.Command{
 	Use:   "hermes",
 	Short: "Hermes is a SSH Config Manager",
 	Run: func(cmd *cobra.Command, args []string) {
-
+	    fmt.Println("Hermes is a SSH Config Manager")
+        fmt.Println("Use \"hermes --help\" for usage information")
 	},
 }
 
